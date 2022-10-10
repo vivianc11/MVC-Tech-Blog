@@ -8,6 +8,20 @@ Comment.init(
         body: {
             type: Datatypes.STRING,
             allowNull: false
+        },
+        post_id: {
+            type: Datatypes.INTEGER,
+            references: {
+                model: 'post',
+                key: 'id'
+            }
+        },
+        user_id: {
+            type: Datatypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
         }
     },
     {
