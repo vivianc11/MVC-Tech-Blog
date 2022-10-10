@@ -5,6 +5,12 @@ class Comment extends Model {}
 
 Comment.init(
     {
+        id: {
+            type: Datatypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true
+        },
         body: {
             type: Datatypes.STRING,
             allowNull: false

@@ -8,7 +8,8 @@ Post.init(
         id: {
             type: Datatypes.INTEGER,
             allowNull: false,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         title: {
             type: Datatypes.STRING,
