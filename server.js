@@ -13,10 +13,10 @@ const sequelize = require('./config/connection');
 const SequelSessStor = require('connect-session-sequelize');
 const { Sequelize } = require('../module-14/config/connection');
 
-// Setting up options for session
+// Configuring and linking a session object with the sequelize store
 const sess = {
     secret: 'Super Secret Key',
-    cookie: {},
+    cookie: { maxAge: 36000 },
     resave: false,
     saveUninitiated: true,
     store: new SequelSessStor({
@@ -24,6 +24,7 @@ const sess = {
     })
 };
 
+// Adding express-session and store as Express.js middleware
 app.use(session(sess));
 
 const hbs = expressHBS.create({ helpers });
