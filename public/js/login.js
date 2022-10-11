@@ -1,8 +1,8 @@
 async function logIn(event) {
     event.preventDefault();
 
-    const username = document.getElementById('username-signup').value.trim();
-    const password = document.getElementById('password-signup').value.trim();
+    const username = document.getElementById('username-login').value.trim();
+    const password = document.getElementById('password-login').value.trim();
 
     if (username && password) {
         const res = await fetch('/api/users/login', {

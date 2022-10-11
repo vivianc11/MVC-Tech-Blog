@@ -26,4 +26,4 @@ async function commentPost(event) {
     }
 }
 
-document.getElementById('comment-form').addEventListener('submit', commentPost;
+document.getElementById('comment-form').addEventListener('submit', commentPost);
