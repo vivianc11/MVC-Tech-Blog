@@ -1,8 +1,8 @@
 async function newPost(event) {
     event.preventDefault();
 
-    const title = document.getElementById('post-title').value;
-    const body = document.getElementById('post-body').value;
+    const title = document.getElementById('post-title').value.trim();
+    const body = document.getElementById('post-body').value.trim();
 
     const res = await fetch('/api/posts', {
         method: 'POST',
