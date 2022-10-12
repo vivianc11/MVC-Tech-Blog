@@ -13,7 +13,7 @@ async function commentPost(event) {
                 comment_body
             }),
             headers: {
-                'content-type': 'application/json'
+                'Content-Type': 'application/json'
             }
         });
 

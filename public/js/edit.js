@@ -9,7 +9,7 @@ async function editPost(event) {
     const res = await fetch(`/api/posts/${id}`, {
         method: 'PUT',
         body: JSON.stringify({ post_id: id, title, body}),
-        headers: { 'content-type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' }
     })
 
     if (res.ok) {

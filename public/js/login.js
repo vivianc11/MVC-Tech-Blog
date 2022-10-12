@@ -8,7 +8,7 @@ async function logIn(event) {
         const res = await fetch('/api/users/login', {
             method: 'POST',
             body: JSON.stringify({ username, password }),
-            headers: { 'content-type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' }
         });
 
         if (res.ok) {

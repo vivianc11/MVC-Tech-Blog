@@ -9,7 +9,7 @@ async function deletePost(event) {
           post_id: id
         }),
         headers: {
-          'content-type': 'application/json'
+          'Content-Type': 'application/json'
         }
       });
       
