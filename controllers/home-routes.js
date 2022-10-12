@@ -5,19 +5,19 @@ const { user, post } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
-    try{
-        const userData = await user.findAll({
+    user.findAll({
             attributes: { exclude: ['password'] },
-            order: [['name', 'ASC']]
-        });
+            order: [['username', 'ASC']]
+        })
+        .then((data) => {
+            const users = userData.map((project) => project.get({ plain: true }));
 
-        const users = userData.map((project) => project.get({ plain: true }));
-
-        res.render('dashboard', {users, logged_in: req.session.logged_in});
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+            res.render('all-posts');
+        })
+        .catch((err) => {
+            res.status(500).json(err);
+        })
+    });
 
 router.get('/login', (req, res) => {
     if(req.session.logged_in) {
@@ -29,7 +29,12 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
-    res.render('signup');
+    if(req.session.logged_in) {
+        res.redirect('/');
+        return;
+    } else {
+        res.render('signup');
+    }
 })
 
 router.get('/post/:id', (req, res) => {
@@ -60,8 +65,7 @@ router.get('/post/:id', (req, res) => {
             }
             const post = data.get({ plain: true });
             console.log(post);
-            res.render('single-post', { post, logged_in: req.session.logged_in });
-
+            res.render('single-post');
 
         })
         .catch((err) => {
@@ -96,7 +100,7 @@ router.get('/posts-comments', (req, res) => {
             }
             const post = data.get({ plain: true });
 
-            res.render('posts-comments', { post, logged_in: req.session.logged_in });
+            res.render('posts-comments');
         })
         .catch((err) => {
             console.log(err);

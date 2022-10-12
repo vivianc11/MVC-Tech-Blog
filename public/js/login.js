@@ -5,8 +5,8 @@ async function logIn(event) {
     const password = document.getElementById('password-login').value.trim();
 
     if (username && password) {
-        const res = await fetch('/api/users/login', {
-            method: 'POST',
+        const res = await fetch('/api/user/login', {
+            method: 'post',
             body: JSON.stringify({ username, password }),
             headers: { 'Content-Type': 'application/json' }
         });

@@ -26,7 +26,7 @@ router.get('/', withAuth, (req, res) => {
         // Serializing the data so templates can read it
         const posts = data.map(post.get({ plain: true }));
         // Rendering the dashboard page
-        res.render('dashboard', { posts, logged_in: true });
+        res.render('dashboard');
     })
     .catch((err) => {
         console.log(err);
@@ -60,7 +60,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
             return;
         } else {
             const post = data.get({ plain: true });
-            res.render('edit', { post, logged_in: true });
+            res.render('edit');
         }
     })
     .catch((err) => {
@@ -69,7 +69,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
     });
 });
 
-router.get('/new-post', (req, res) => {
+router.get('/new', withAuth, (req, res) => {
     res.render('new-post')
 })
 

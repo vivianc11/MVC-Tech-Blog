@@ -3,17 +3,19 @@ async function signUp(event) {
 
     const username = document.getElementById('username-signup').value.trim();
     const password = document.getElementById('password-signup').value.trim();
+    // console.log(username);
+    // console.log(password);
 
     if (username && password) {
-        const res = await fetch('/api/users', {
-            method: 'POST',
+        const res = await fetch('/api/user', {
+            method: 'post',
             body: JSON.stringify({ username, password }),
             headers: { 'Content-Type': 'application/json' }
         });
         if (res.ok) {
             console.log('Successful Sign Up');
 
-            document.location.replace('/dashboard');
+            document.replace('/dashboard');
         } else {
             console.log(res.statusText);
         }

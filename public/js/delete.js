@@ -3,8 +3,8 @@ async function deletePost(event) {
 
     const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
       
-      const res = await fetch(`/api/posts/${id}`, {
-        method: 'DELETE',
+      const res = await fetch(`/api/post/${id}`, {
+        method: 'delete',
         body: JSON.stringify({
           post_id: id
         }),
