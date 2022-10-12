@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { user } = require('../models');
+const { user } = require('../models/user');
 
 // Authorization required
 const withAuth = require('../utils/auth');
@@ -13,7 +13,7 @@ router.get('/', withAuth, async (req, res) => {
 
         const users = userData.map((project) => project.get({ plain: true }));
 
-        res.render('homepage', {users, logged_in: req.session.logged_in});
+        res.render('dashboard', {users, logged_in: req.session.logged_in});
     } catch (err) {
         res.status(500).json(err);
     }

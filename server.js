@@ -10,16 +10,17 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const sequelize = require('./config/connection');
-const SequelSessStor = require('connect-session-sequelize');
-const { Sequelize } = require('../module-14/config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const { Sequelize } = require('./config/connection');
 
 // Configuring and linking a session object with the sequelize store
 const sess = {
     secret: 'Super Secret Key',
-    cookie: { maxAge: 36000 },
+    // will logout after 24 hours
+    cookie: { maxAge: 24 * 60 * 60 * 1000},
     resave: false,
-    saveUninitiated: true,
-    store: new SequelSessStor({
+    saveUninitialized: true,
+    store: new SequelizeStore({
         db: sequelize
     })
 };
@@ -35,7 +36,7 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(require('./routes'));
+app.use(require('./controllers'));
 
 app.listen(PORT, () => {
     console.log(`App now listening on port ${PORT}`);

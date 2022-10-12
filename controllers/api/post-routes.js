@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { post, user, comment } = require('../../models');
+const { post, user, comment } = require('../../models/');
 const sequelize = require('../../config/connection');
 
 // Authorization required
@@ -110,3 +110,5 @@ router.delete('/:id', withAuth, (req, res) => {
         res.status(500).json(err)
     })
 })
+
+module.exports = router;
